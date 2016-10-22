@@ -1,0 +1,3 @@
+*this is italic*
+**bold text (not italic)**
+foo foo *bar* *bar* foo *bar*
