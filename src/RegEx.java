@@ -1,35 +1,19 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Created by andrey on 15.10.2016.
+ * Гончаревич Андрей 8 группа, лабораторная №5
  */
 public class RegEx {
 
-
-//    public static String asterisksToItalic(String inputString) {
-//
-//        String temp = inputString;
-//        String result;
-//        Pattern model = Pattern.compile(".*[*][^*].+[*][^*].*");
-//        Matcher m = model.matcher(temp);
-//        if (m.matches()) {
-//            int firstindex = temp.indexOf("*");
-//            int secondindex = temp.indexOf("*", firstindex + 1);
-//            result = temp.substring(0, firstindex) + "<em>" + temp.substring(firstindex + 1, secondindex) +
-//                    "</em>" + temp.substring(secondindex + 1);
-//        } else
-//            result = inputString;
-//        return result;
-//
-//    }
-
+    //Task1
     public static String asterisksToItalic(String inputString) {
 
-        String temp = inputString;
-        String result = temp;
+        String result = inputString;
         Pattern model = Pattern.compile("([^*]*([*][^*].+[*][^*]?)?)+");
-        Matcher m = model.matcher(temp);
+        Matcher m = model.matcher(result);
         if (m.matches()) {
             {
                 int firstindex;
@@ -37,15 +21,14 @@ public class RegEx {
 
                 while (true) {
                     firstindex = result.indexOf("*");
-                    secondindex = result.indexOf("*", firstindex +1);
+                    secondindex = result.indexOf("*", firstindex + 1);
                     if (firstindex == -1 || secondindex == -1)
                         break;
                     result = result.substring(0, firstindex) + "<em>" + result.substring(firstindex + 1, secondindex) +
                             "</em>" + result.substring(secondindex + 1);
                 }
             }
-        } else
-            result = inputString;
+        }
         return result;
 
     }
@@ -84,7 +67,7 @@ public class RegEx {
     //Task6
     public static boolean isDate(String string) {
         Pattern DateModel = Pattern.compile("(((((0[1-9])|([12]\\d)|3[01])/(0[13578]|(1[02])))|(((0[1-9])|([12]\\d)|30)/(0[469]|11))|((0[1-9])|(1\\d)|((2[0-8])/02)))/((1[6-9]\\d{2})|[2-9]\\d{3}))|" +
-                "(29/02/(((1[6-9]|[2-9]\\d)(([2468][048])|(0[48])|(1[26]))|([2468][048]([02468][048])|([13579][26])))))");
+                "(29/02/((1[6-9]|[2-9]\\d)(([2468][048])|(0[48])|(1[26]))|([2468][048]([02468][048])|([13579][26]))))");
         return string.matches(DateModel.pattern());
     }
 
@@ -95,9 +78,18 @@ public class RegEx {
     }
 
     //Task8
-//    public static String[] divideToTokens(String string) {
-//        return divided;
-//    }
+    public static List<String> splitToTokens(String string) {
+        Pattern model = Pattern.compile("(\"([^\"]+)\")|(\\w+[-']?\\w+)+");
+        Matcher matcher = model.matcher(string);
+        List<String> tokens = new ArrayList<>();
+        while (matcher.find()) {
+            if (matcher.group(2) != null)
+                tokens.add(matcher.group(2));
+            if (matcher.group(3) != null)
+                tokens.add(matcher.group(3));
+        }
+        return tokens;
+    }
 
     //Task9
     public static boolean isIRC(String string) {

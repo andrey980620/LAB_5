@@ -3,7 +3,7 @@ import java.io.FileReader;
 import java.util.Scanner;
 
 /**
- * Created by pc on 10/22/16.
+ * Гончаревич Андрей 8 группа, лабораторная №5
  */
 public class Tester {
     public static void test(int option, String fileName) throws FileNotFoundException {
@@ -35,6 +35,9 @@ public class Tester {
                     break;
                 case 7:
                     System.out.println(" => " + RegEx.isHtmlColor(line));
+                    break;
+                case 8:
+                    System.out.println(" => " + RegEx.splitToTokens(line));
                     break;
                 case 9:
                     System.out.println(" => " + RegEx.isIRC(line));
